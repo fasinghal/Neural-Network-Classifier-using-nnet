@@ -1,0 +1,153 @@
+[Workspace loaded from D:/RWD Final/.RData]
+
+> source('D:/Google Drive/SEM2 MS/ML/My Final Project/ProjectScript.R')
+
+> income.data<- getAdultDataSet()
+> income.data<-processData(data = income.data)
+
+> dataset <-getCrossValidationSets(all.data = income.data)
+
+> logit.fit<-logistic.Regression(train.data = dataset$train)
+
+> neural.fit<-neuralNetwork(train.data = dataset$train)
+
+Loading required package: nnet
+# weights:  841
+initial  value 19273.312360 
+iter  10 value 11349.088229
+iter  20 value 8805.490444
+iter  30 value 7625.524773
+iter  40 value 7263.644507
+iter  50 value 7028.723389
+iter  60 value 6867.293746
+iter  70 value 6745.216822
+iter  80 value 6618.953312
+iter  90 value 6548.738454
+iter 100 value 6490.806571
+iter 110 value 6485.579057
+iter 120 value 6478.644834
+iter 130 value 6465.043677
+iter 140 value 6447.770999
+iter 150 value 6421.802116
+iter 160 value 6396.228397
+iter 170 value 6375.804246
+iter 180 value 6346.747677
+iter 190 value 6327.259006
+iter 200 value 6303.852308
+iter 210 value 6274.572257
+iter 220 value 6262.360136
+iter 230 value 6258.349534
+iter 240 value 6255.158627
+iter 250 value 6234.430576
+iter 260 value 6205.413237
+iter 270 value 6182.035953
+iter 280 value 6181.512139
+iter 290 value 6181.063555
+iter 300 value 6180.133515
+iter 310 value 6178.698376
+iter 320 value 6175.841588
+iter 330 value 6171.441391
+iter 340 value 6162.291423
+iter 350 value 6152.159719
+iter 360 value 6140.426064
+iter 370 value 6122.540360
+iter 380 value 6103.270720
+iter 390 value 6075.433510
+iter 400 value 6056.185618
+iter 410 value 6042.592643
+iter 420 value 6031.850787
+iter 430 value 6023.842532
+iter 440 value 6019.801897
+iter 450 value 6016.270854
+iter 460 value 6009.394880
+iter 470 value 6003.304590
+iter 480 value 5995.598600
+iter 490 value 5990.615617
+iter 500 value 5982.250038
+iter 510 value 5972.496103
+iter 520 value 5964.316144
+iter 530 value 5958.718735
+iter 540 value 5954.528212
+iter 550 value 5951.351579
+iter 560 value 5948.578641
+iter 570 value 5946.545878
+iter 580 value 5943.836003
+iter 590 value 5942.530284
+iter 600 value 5940.314939
+iter 610 value 5937.432327
+iter 620 value 5935.122230
+iter 630 value 5933.204342
+iter 640 value 5931.078775
+iter 650 value 5926.053325
+iter 660 value 5923.003988
+iter 670 value 5920.104712
+iter 680 value 5918.745174
+iter 690 value 5917.058581
+iter 700 value 5917.001033
+iter 710 value 5916.941795
+iter 720 value 5916.723698
+iter 730 value 5916.282699
+iter 740 value 5915.859850
+iter 750 value 5914.948373
+iter 760 value 5914.341286
+iter 770 value 5913.356715
+iter 780 value 5911.939913
+iter 790 value 5910.223824
+iter 800 value 5908.163085
+iter 810 value 5905.452227
+iter 820 value 5902.909187
+iter 830 value 5896.034404
+iter 840 value 5892.416842
+iter 850 value 5889.704976
+iter 860 value 5885.530418
+iter 870 value 5882.316576
+iter 880 value 5878.520104
+iter 890 value 5876.378830
+iter 900 value 5873.835552
+iter 910 value 5869.740581
+iter 920 value 5862.233222
+iter 930 value 5856.694053
+iter 940 value 5852.379802
+iter 950 value 5850.291355
+iter 960 value 5848.746601
+iter 970 value 5847.561944
+iter 980 value 5846.629344
+iter 990 value 5845.312111
+iter1000 value 5842.008457
+iter1010 value 5839.692284
+iter1020 value 5836.341429
+iter1030 value 5833.508788
+iter1040 value 5832.718733
+iter1050 value 5831.888237
+iter1060 value 5831.331110
+iter1070 value 5831.023909
+iter1080 value 5830.755976
+iter1090 value 5830.640496
+iter1100 value 5830.529924
+iter1110 value 5830.457652
+iter1120 value 5830.437090
+iter1130 value 5830.426736
+iter1140 value 5830.406032
+iter1150 value 5830.386825
+iter1160 value 5830.381911
+iter1170 value 5830.380170
+final  value 5830.373048 
+converged
+
+> accuracyAnalysisLR(test.data = dataset$test, fitted.model = logit.fit)
+       1 
+77.91058 
+
+> accuracyAnalysisNN(test.data = dataset$test,fitted.model = neural.fit,type = "class")
+       1 
+86.36565 
+
+> ROCAnalysis(model.1 = logit.fit,model.2 = neural.fit,test.data = dataset$test)
+Loading required package: ROCR
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
